@@ -15,11 +15,10 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var getMaxTime = function (a, b) {
-  return b - a;
-};
-
 window.renderStatistics = function (ctx, names, times) {
+
+  var maxTime = Math.max.apply(null, times);
+
   renderCloud(ctx, CLOUD_X + SHIFT, CLOUD_Y + SHIFT, 'rgba(0, 0, 0, 0.3)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -29,9 +28,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили', CLOUD_X + GAP / 2, CLOUD_Y + FONT_SPACE);
   ctx.fillText('Список результатов:', CLOUD_X + GAP / 2,
       CLOUD_Y + FONT_SPACE * 1.5);
-
-  times.sort(getMaxTime);
-  var maxTime = times[0];
 
   names.forEach(function (value, index) {
     var calculatedSpace = CLOUD_X + GAP / 2 + (GAP + BAR_WIDTH) * index;
