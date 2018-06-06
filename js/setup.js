@@ -42,7 +42,6 @@ var getWizardElement = function (wizard) {
 };
 
 var ourWizards = generateWizards(4);
-
 ourWizards.forEach(function (value) {
   similarWizardTemplate.appendChild(getWizardElement(value));
 });
