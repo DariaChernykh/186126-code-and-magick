@@ -44,8 +44,8 @@ var getWizardElement = function (wizard) {
 };
 
 var wizards = generateWizards(NAMBER_OF_WIZARDS);
-wizards.forEach(function (value) {
-  similarListElement.appendChild(getWizardElement(value));
+wizards.forEach(function (wizard) {
+  similarListElement.appendChild(getWizardElement(wizard));
 }
 );
 
