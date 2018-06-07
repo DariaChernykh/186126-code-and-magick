@@ -2,8 +2,9 @@
 
 var setup = document.querySelector('.setup');
 var similarListElement = document.querySelector('.setup-similar-list');
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-var wizardElement = similarWizardTemplate.cloneNode(true);
+var similarWizardTemplate = document.querySelector('#similar-wizard-template')
+  .content;
+var setupSimilar = document.querySelector('.setup-similar');
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор',
   'Юлия', 'Люпита', 'Вашингтон'];
@@ -13,9 +14,9 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)',
   'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)',
   'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var NAMBER_OF_WIZARDS = 4;
 
 setup.classList.remove('hidden');
-similarWizardTemplate.querySelector('.setup-similar-item').remove();
 
 function generateData(currentArray) {
   return currentArray[Math.floor(Math.random() * currentArray.length)];
@@ -34,17 +35,18 @@ function generateWizards(number) {
 }
 
 var getWizardElement = function (wizard) {
-  var localWizard = wizardElement.cloneNode(true);
-  localWizard.querySelector('.setup-similar-label').textContent = wizard.name;
-  localWizard.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  localWizard.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-  return localWizard;
+  var clonedWizard = similarWizardTemplate.cloneNode(true);
+  clonedWizard.querySelector('.setup-similar-label').textContent =
+    wizard.name;
+  clonedWizard.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  clonedWizard.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  return clonedWizard;
 };
 
-var ourWizards = generateWizards(4);
-ourWizards.forEach(function (value) {
-  similarWizardTemplate.appendChild(getWizardElement(value));
-});
-similarListElement.appendChild(similarWizardTemplate);
+var wizards = generateWizards(NAMBER_OF_WIZARDS);
+wizards.forEach(function (value) {
+  similarListElement.appendChild(getWizardElement(value));
+}
+);
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+setupSimilar.classList.remove('hidden');
